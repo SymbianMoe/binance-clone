@@ -1,5 +1,8 @@
+"use client";
 import Head from "next/head";
 import Image from "next/image";
+import React, { useState, useEffect } from "react";
+import { setCookie, getCookie } from "cookies-next";
 
 const walletInfo = {
   name: "marcelino.110394",
