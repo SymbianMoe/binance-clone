@@ -16,13 +16,14 @@ body {
   background-color: #121212;
   color: #e4e4e4;
   padding: 10px;
+  overflow: hidden;
 }
 
 /* Header */
 header {
   display: flex;
   flex-direction: column;
-  padding: 15px;
+  padding: 10px 0;
 }
 
 .header-content {
@@ -32,15 +33,15 @@ header {
 
 .logo {
   margin-top: -20px;
-  font-size: 19px;
+  font-size: 14px;
 
   display: flex;
   align-items: center;
   gap: 8px;
 }
 .logo-image-container {
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   overflow: hidden;
 }
@@ -51,13 +52,13 @@ header {
 .balance {
   font-family: "Coinbase Display", sans-serif;
   margin-top: 20px;
-  font-size: 34px;
+  font-size: 24px;
   font-weight: bold;
 }
 
 /* Navigation */
 .btn-grp {
-  margin-top: 20px;
+  margin-top: 15px;
   display: flex;
   justify-content: center;
   gap: 5px;
@@ -67,7 +68,7 @@ header {
   width: 100%;
   background: #3a3a3a;
 
-  padding: 10px 15px;
+  padding: 5px 10px;
   text-align: center;
   border: none;
   transition: 0.5s;
@@ -75,7 +76,7 @@ header {
   color: white;
   border-radius: 50px;
   display: block;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   font-family: "Coinbase Display", sans-serif;
 }
@@ -97,9 +98,6 @@ header {
 }
 
 /* Main Content */
-main {
-  margin-top: 10px;
-}
 
 .crypto-tabs {
   display: flex;
@@ -124,15 +122,14 @@ main {
 }
 
 .crypto-list {
-  margin-top: 20px;
-  height: 600px;
+  height: 500px;
   overflow-y: auto;
   -ms-overflow-style: none; /* Internet Explorer 10+ */
   scrollbar-width: none; /* Firefox, Safari 18.2+, Chromium 121+ */
 }
 
 .crypto-item {
-  margin: 10px 0;
+  margin: 5px 0;
   padding: 20px;
   border-radius: 8px;
   display: flex;
@@ -152,7 +149,7 @@ main {
   flex-direction: column;
   justify-content: center;
   text-align: right;
-  font-size: 17px;
+  font-size: 16px;
 }
 
 .crypto-name {
@@ -180,6 +177,7 @@ footer {
 }
 
 .footer-nav {
+  margin-bottom: 20px;
   display: flex;
   justify-content: space-around;
 }
@@ -197,4 +195,10 @@ footer {
 
 .active-2 {
   color: #0e62ff;
+}
+
+.nav-text {
+  font-size: 12px;
+  color: #e4e4e4;
+  font-family: "Coinbase Display", sans-serif;
 }

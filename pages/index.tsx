@@ -80,8 +80,8 @@ export default function Home() {
                   <Image
                     src="/Coinbase_App.webp"
                     alt="Coinbase Logo"
-                    width={30}
-                    height={30}
+                    width={25}
+                    height={25}
                     className="logo-image"
                   />
                 </div>
