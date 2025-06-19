@@ -1,11 +1,67 @@
 import Head from "next/head";
 import Image from "next/image";
-import { Inter } from "@next/font/google";
-import styles from "../styles/Home.module.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const walletInfo = {
+  name: "marcelino.110394",
+  address: "0x1234567890abcdef1234567890abcdef12345678",
+  coins: [
+    {
+      name: "Bitcoin",
+      short: "BTC",
+      amount: 198.742,
+      usd: 20795607.66,
+      img: "/btc.png",
+    },
+    {
+      name: "Ethereum",
+      short: "ETH",
+      amount: 102.88741239,
+      usd: 259945.87,
+      img: "/eth.png",
+    },
+    {
+      name: "USDC",
+      short: "USDC",
+      amount: 4200.54889,
+      usd: 4200.55,
+      img: "/usdc.png",
+    },
+    {
+      name: "Solana",
+      short: "SOL",
+      amount: 100.4432564,
+      usd: 14765.68,
+      img: "/solana.png",
+    },
+    {
+      name: "Litecoin",
+      short: "LTC",
+      amount: 50.98,
+      usd: 4346.71,
+      img: "/ltc.png",
+    },
+    {
+      name: "MATIC",
+      short: "MATIC",
+      amount: 12.44,
+      usd: 8.5,
+      img: "/matic.png",
+    },
+    {
+      name: "BnB",
+      short: "BNB",
+      amount: 5.67,
+      usd: 1234.56,
+      img: "/bnb.webp",
+    },
+  ],
+};
 
 export default function Home() {
+  const totalBalance = walletInfo.coins.reduce((acc, coin) => {
+    return acc + coin.usd;
+  }, 0);
+
   return (
     <>
       <Head>
@@ -15,104 +71,131 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <div className="container">
-          <div className="header">
-            <div className="tabs">
-              <button className="tab">Exchange</button>
-              <button className="tab">Wallet</button>
+      <body>
+        <header>
+          <div className="header-content">
+            <div className="header-row">
+              <div className="logo">
+                <div className="logo-image-container">
+                  <Image
+                    src="/Coinbase_App.webp"
+                    alt="Coinbase Logo"
+                    width={30}
+                    height={30}
+                    className="logo-image"
+                  />
+                </div>
+                <div className="logo-text">
+                  <span>
+                    coinbase
+                    <span
+                      style={{
+                        color: "gray",
+                      }}
+                    >
+                      .{walletInfo.name}
+                    </span>
+                  </span>
+                </div>
+              </div>
+              <div className="header-btns"></div>
             </div>
-            <div className="tabs">
-              <button className="tab">Overview</button>
-              <button className="tab">Funding</button>
-              <button className="tab">Spot</button>
-              <button className="tab">Futures</button>
+            <div className="balance">
+              <span>
+                {totalBalance.toLocaleString("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                })}
+              </span>
             </div>
           </div>
+          <div className="btn-grp">
+            <button className="nav-button active-1">Buy</button>
+            <button className="nav-button">Swap</button>
+            <button className="nav-button">Cash out</button>
+          </div>
+        </header>
 
-          <div className="value-section">
-            <div className="total-value">
-              <p>Est. Total Value</p>
-              <h2>$0.00915855 USD</h2>
+        <main>
+          <section className="crypto-section">
+            <div className="crypto-tabs">
+              <div className="tab active">Crypto</div>
+              <div className="tab">NFTs</div>
+              <div className="tab">DeFi</div>
             </div>
-            <div className="pnl">
-              <p>Today&apos;s PNL</p>
-              <span className="positive">+0.00035857 (+4.07%)</span>
+
+            <div className="crypto-list">
+              {walletInfo.coins.map((coin, index) => (
+                <div className="crypto-item" key={index}>
+                  <div className="crypto-details">
+                    <div className="crypto-icon">
+                      <Image
+                        src={coin.img}
+                        alt={`${coin.name} icon`}
+                        width={30}
+                        height={30}
+                      />
+                    </div>
+                    <div className="crypto-info">
+                      <div className="crypto-name">{coin.name}</div>
+                    </div>
+                  </div>
+
+                  <div className="crypto-stats">
+                    <div className="crypto-usd">
+                      {coin.usd.toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                      })}
+                    </div>
+                    <div className="crypto-amount">
+                      {coin.amount.toLocaleString("en-US", {
+                        maximumFractionDigits: 8,
+                      })}
+                      {" " + coin.short}
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
-            <div className="actions">
-              <button className="add-funds">Add Funds</button>
-              <button className="send">Send</button>
-              <button className="transfer">Transfer</button>
+          </section>
+        </main>
+
+        <footer>
+          <div className="footer-nav">
+            <div className="nav-item active-2">
+              <div className="nav-icon">
+                <i className="fa-solid fa-chart-pie"></i>
+              </div>
+              <div className="nav-text">Assets</div>
+            </div>
+            <div className="nav-item ">
+              <div className="nav-icon">
+                <i className="fa-solid fa-file-lines"></i>
+              </div>
+              <div className="nav-text">Transactions</div>
+            </div>
+            <div className="nav-item ">
+              <div className="nav-icon">
+                <i className="fa-solid fa-globe"></i>
+              </div>
+              <div className="nav-text">Browser</div>
+            </div>
+            <div className="nav-item ">
+              <div className="nav-icon">
+                <i className="fa-solid fa-magnifying-glass"></i>
+              </div>
+              <div className="nav-text">Explore</div>
+            </div>
+            <div className="nav-item ">
+              <div className="nav-icon">
+                <i className="fa-solid fa-gear"></i>
+              </div>
+              <div className="nav-text">Settings</div>
             </div>
           </div>
-
-          <div className="crypto-holdings">
-            <div className="crypto-item">
-              <div className="crypto-name">
-                <span className="icon">🪙</span> <span>HUMA</span>
-              </div>
-              <div className="crypto-info">
-                <p>Huma Finance</p>
-                <p>Amount: 0.22134242</p>
-                <p>Value: $0.008457</p>
-                <p className="pnl">
-                  Today&apos;s PNL:{" "}
-                  <span className="positive">+0.00 (+4.43%)</span>
-                </p>
-                <p>Average Cost: $0.06280993</p>
-              </div>
-            </div>
-
-            <div className="crypto-item">
-              <div className="crypto-name">
-                <span className="icon">💲</span> <span>USDT</span>
-              </div>
-              <div className="crypto-info">
-                <p>TetherUS</p>
-                <p>Amount: 0.000701</p>
-                <p>Value: $0.000701</p>
-                <p className="pnl">
-                  Today&apos;s PNL: <span className="neutral">+0.00 (+0%)</span>
-                </p>
-              </div>
-            </div>
-
-            <div className="crypto-item">
-              <div className="crypto-name">
-                <span className="icon">🎥</span> <span>BTTC</span>
-              </div>
-              <div className="crypto-info">
-                <p>BitTorrent</p>
-                <p>Amount: 0.10</p>
-                <p>Value: $0.000000</p>
-                <p className="pnl">
-                  Today&apos;s PNL:{" "}
-                  <span className="negative">+0.00 (-1.56%)</span>
-                </p>
-              </div>
-            </div>
-
-            <div className="crypto-item">
-              <div className="crypto-name">
-                <span className="icon">🌙</span> <span>LUNC</span>
-              </div>
-              <div className="crypto-info">
-                <p>Terra classNameic</p>
-                <p>Amount: 0.0000948</p>
-                <p>Value: $0.00</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="footer">
-            <button className="footer-btn">Home</button>
-            <button className="footer-btn">Markets</button>
-            <button className="footer-btn">Trade</button>
-            <button className="footer-btn">Futures</button>
-            <button className="footer-btn">Assets</button>
-          </div>
-        </div>
-      </main>
+        </footer>
+      </body>
     </>
   );
 }

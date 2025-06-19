@@ -1,4 +1,10 @@
-/* Basic Reset */
+@font-face {
+  font-family: "Coinbase Display";
+  src: url("/font/Coinbase Display.ttf") format("truetype");
+  font-weight: normal;
+}
+
+/* General Reset */
 * {
   margin: 0;
   padding: 0;
@@ -6,127 +12,189 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #181818;
-  color: #fff;
+  font-family: "Coinbase Display", sans-serif;
+  background-color: #121212;
+  color: #e4e4e4;
+  padding: 10px;
+}
+
+/* Header */
+header {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  margin-top: -20px;
+  font-size: 19px;
+
+  display: flex;
   align-items: center;
-  height: 100vh;
+  gap: 8px;
+}
+.logo-image-container {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.logo-text {
+  font-family: "Coinbase Display", sans-serif;
 }
 
-.container {
-  width: 100%;
-  max-width: 1200px;
-  padding: 20px;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 30px;
-}
-
-.tabs {
-  display: flex;
-}
-
-.tab {
-  background-color: #1d1d1d;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  margin: 0 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.tab:hover {
-  background-color: #333;
-}
-
-.value-section {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-}
-
-.total-value h2 {
-  font-size: 24px;
+.balance {
+  font-family: "Coinbase Display", sans-serif;
+  margin-top: 20px;
+  font-size: 34px;
   font-weight: bold;
 }
 
-.pnl {
-  font-size: 16px;
+/* Navigation */
+.btn-grp {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
 }
 
-.positive {
-  color: #1cc88a;
+.nav-button {
+  width: 100%;
+  background: #3a3a3a;
+
+  padding: 15px 20px;
+  text-align: center;
+  border: none;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 50px;
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "Coinbase Display", sans-serif;
 }
 
-.negative {
-  color: #e74a3b;
-}
-
-.neutral {
-  color: #f4f4f4;
-}
-
-.actions button {
-  background-color: #f1c40f;
+.nav-button:hover {
+  background-position: right center; /* change the direction of the change here */
   color: #fff;
-  padding: 10px 20px;
-  margin: 0 5px;
+  text-decoration: none;
+}
+
+.active-1 {
+  background-image: linear-gradient(
+    to left,
+    #00d2ff 0%,
+    #3a7bd5 51%,
+    #00d2ff 100%
+  );
+  color: #000;
+}
+
+/* Main Content */
+main {
+  margin-top: 10px;
+}
+
+.crypto-tabs {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #333;
+}
+
+.tab {
+  color: #ffffff;
+  padding: 5px;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s;
+  border-radius: 5px;
+  font-size: 18px;
 }
 
-.actions button:hover {
-  background-color: #f39c12;
+.tab.active {
+  position: relative;
+  color: #0e62ff;
+  border-bottom: 2px solid #0e62ff;
 }
 
-.crypto-holdings {
-  margin-bottom: 30px;
+.crypto-list {
+  margin-top: 20px;
+  height: 600px;
+  overflow-y: auto;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox, Safari 18.2+, Chromium 121+ */
 }
 
 .crypto-item {
-  display: flex;
-  justify-content: space-between;
-  background-color: #2c2c2c;
-  padding: 15px;
-  margin-bottom: 15px;
+  margin: 10px 0;
+  padding: 20px;
   border-radius: 8px;
-}
-
-.crypto-name {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
 }
 
-.icon {
-  margin-right: 10px;
-}
-
-.crypto-info p {
-  margin: 5px 0;
-}
-
-.footer {
+.crypto-details {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+  gap: 20px;
 }
 
-.footer-btn {
-  background-color: #1d1d1d;
-  color: #fff;
-  padding: 15px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
+.crypto-stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: right;
+  font-size: 17px;
 }
 
-.footer-btn:hover {
-  background-color: #333;
+.crypto-name {
+  margin-top: 2px;
+  font-size: 20px;
+}
+
+.crypto-amount {
+  color: #777;
+}
+
+.crypto-note {
+  font-size: 12px;
+  color: #00ff99;
+}
+
+/* Footer */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #1f1f1f;
+  padding: 20px 10px;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: space-around;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.nav-icon {
+  font-size: 20px;
+}
+
+.active-2 {
+  color: #0e62ff;
 }
