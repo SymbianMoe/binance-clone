@@ -32,7 +32,22 @@ header {
   flex-direction: column;
   padding: 10px 0;
 }
-
+.my-spinner-container {
+  background-color: #181a20; /* Replace with your desired dark bg */
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 50%;
+  right: 50%;
+  z-index: 30;
+  height: 2rem; /* 2rem = 32px (h-8) */
+  width: 2rem; /* 2rem = 32px (w-8) */
+  transform: translateX(-50%);
+  border-radius: 9999px; /* fully rounded */
+  padding: 0.5rem; /* 0.5rem = 8px (p-2) */
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
 .header-content {
   display: flex;
   flex-direction: column;

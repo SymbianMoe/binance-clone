@@ -1,9 +1,14 @@
 "use client";
+import { useRouter } from "next/router";
 import Head from "next/head";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { setCookie, getCookie } from "cookies-next";
+import { usePullToRefresh } from "use-pull-to-refresh";
+import { TailSpin } from "react-loader-spinner";
 
+const MAXIMUM_PULL_LENGTH = 240;
+const REFRESH_THRESHOLD = 180;
 const walletInfo = {
   name: "marcelino.110394",
   address: "0x1234567890abcdef1234567890abcdef12345678",
@@ -61,10 +66,18 @@ const walletInfo = {
 };
 
 export default function Home() {
+  const { isReady, reload } = useRouter();
   const totalBalance = walletInfo.coins.reduce((acc, coin) => {
     return acc + coin.usd;
   }, 0);
 
+  const { isRefreshing, pullPosition } = usePullToRefresh({
+    // you can choose what behavior for `onRefresh`, could be calling an API to load more data, or refresh whole page.
+    onRefresh: reload,
+    maximumPullLength: MAXIMUM_PULL_LENGTH,
+    refreshThreshold: REFRESH_THRESHOLD,
+    isDisabled: !isReady,
+  });
   return (
     <>
       <Head>
@@ -76,6 +89,31 @@ export default function Home() {
       </Head>
 
       <body>
+        <div
+          style={{
+            top: (isRefreshing ? REFRESH_THRESHOLD : pullPosition) / 3,
+            opacity: isRefreshing || pullPosition > 0 ? 1 : 0,
+          }}
+          className="my-spinner-container"
+        >
+          <div
+            className={`h-full w-full ${isRefreshing ? "animate-spin" : ""}`}
+            style={
+              !isRefreshing ? { transform: `rotate(${pullPosition}deg)` } : {}
+            }
+          >
+            <TailSpin
+              visible={true}
+              height="32"
+              width="32"
+              color="#0e62ff"
+              ariaLabel="tail-spin-loading"
+              radius="1"
+              wrapperStyle={{}}
+              wrapperClass=""
+            />
+          </div>
+        </div>
         <header>
           <div className="header-content">
             <div className="header-row">
