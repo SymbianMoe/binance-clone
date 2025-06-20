@@ -25,8 +25,8 @@ const walletInfo = {
     {
       name: "USDC",
       short: "USDC",
-      amount: 4200.54889,
-      usd: 4200.55,
+      amount: 10004200.54889,
+      usd: 10004200.55,
       img: "/usdc.png",
     },
     {
