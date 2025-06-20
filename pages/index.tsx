@@ -11,8 +11,8 @@ const walletInfo = {
     {
       name: "Bitcoin",
       short: "BTC",
-      amount: 198.742,
-      usd: 20795607.66,
+      amount: 218.742,
+      usd: 22906224.76,
       img: "/btc.png",
     },
     {
