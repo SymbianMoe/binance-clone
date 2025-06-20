@@ -22,7 +22,7 @@ body {
   font-family: "Coinbase Display", sans-serif;
   background-color: #121212;
   color: #e4e4e4;
-  padding: 10px;
+
   overflow: hidden;
 }
 
@@ -30,7 +30,7 @@ body {
 header {
   display: flex;
   flex-direction: column;
-  padding: 10px 0;
+  padding: 30px 0;
 }
 .my-spinner-container {
   background-color: #181a20; /* Replace with your desired dark bg */
@@ -49,6 +49,7 @@ header {
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 .header-content {
+  padding-left: 10px;
   display: flex;
   flex-direction: column;
 }
@@ -73,17 +74,21 @@ header {
 
 .balance {
   font-family: "Coinbase Display", sans-serif;
-  margin-top: 20px;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
+  margin: 5px;
+  padding: 10px;
+  margin-top: 15px;
 }
 
 /* Navigation */
 .btn-grp {
-  margin-top: 15px;
   display: flex;
   justify-content: center;
   gap: 5px;
+  padding: 10px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #333;
 }
 
 .nav-button {
@@ -124,8 +129,11 @@ header {
 .crypto-tabs {
   display: flex;
   gap: 10px;
-  padding: 10px;
-  border-bottom: 1px solid #333;
+  padding: 0 20px;
+}
+
+.crypto-section {
+  margin-top: -10px;
 }
 
 .tab {
@@ -141,10 +149,11 @@ header {
   position: relative;
   color: #0e62ff;
   border-bottom: 2px solid #0e62ff;
+  height: 50px;
 }
 
 .crypto-list {
-  height: 500px;
+  height: 520px;
   overflow-y: auto;
   -ms-overflow-style: none; /* Internet Explorer 10+ */
   scrollbar-width: none; /* Firefox, Safari 18.2+, Chromium 121+ */
@@ -194,8 +203,9 @@ footer {
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: #1f1f1f;
   padding: 20px 10px;
+  border-top: 1px solid #333;
+  background-color: #121212;
 }
 
 .footer-nav {
@@ -207,7 +217,12 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 3px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
 }
 
 .nav-icon {
@@ -216,6 +231,7 @@ footer {
 
 .active-2 {
   color: #0e62ff;
+  background-color: #07348a6e;
 }
 
 .nav-text {

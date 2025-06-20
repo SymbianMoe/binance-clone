@@ -1,11 +1,16 @@
-"use client";
+import React from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
-import { setCookie, getCookie } from "cookies-next";
+
 import { usePullToRefresh } from "use-pull-to-refresh";
 import { TailSpin } from "react-loader-spinner";
+import { IoWalletSharp, IoWallet } from "react-icons/io5";
+import { RiFileList2Line } from "react-icons/ri";
+import { LuArrowUpDown } from "react-icons/lu";
+import { CiGlobe } from "react-icons/ci";
+import { FaGlobe } from "react-icons/fa";
+import { AiOutlineHome } from "react-icons/ai";
 
 const MAXIMUM_PULL_LENGTH = 240;
 const REFRESH_THRESHOLD = 180;
@@ -65,8 +70,22 @@ const walletInfo = {
   ],
 };
 
+interface NavBarItemProps {
+  icon: React.ReactNode;
+  activeIcon: React.ReactNode;
+  isActive: boolean;
+  onGo?: () => void;
+}
+const NavBarItem = ({ icon, activeIcon, isActive, onGo }: NavBarItemProps) => {
+  return (
+    <div className={`nav-item ${isActive ? "active-2" : ""}`} onClick={onGo}>
+      <div className="nav-icon">{isActive ? activeIcon : icon}</div>
+    </div>
+  );
+};
+
 export default function Home() {
-  const { isReady, reload } = useRouter();
+  const { isReady, reload, pathname, push } = useRouter();
   const totalBalance = walletInfo.coins.reduce((acc, coin) => {
     return acc + coin.usd;
   }, 0);
@@ -78,6 +97,11 @@ export default function Home() {
     refreshThreshold: REFRESH_THRESHOLD,
     isDisabled: !isReady,
   });
+
+  const getCurrentRoute = () => {
+    return pathname;
+  };
+
   return (
     <>
       <Head>
@@ -88,7 +112,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <body>
+      <div className="container">
         <div
           style={{
             top: (isRefreshing ? REFRESH_THRESHOLD : pullPosition) / 3,
@@ -154,7 +178,6 @@ export default function Home() {
           <div className="btn-grp">
             <button className="nav-button active-1">Buy</button>
             <button className="nav-button">Swap</button>
-            <button className="nav-button">Cash out</button>
           </div>
         </header>
 
@@ -205,39 +228,79 @@ export default function Home() {
 
         <footer>
           <div className="footer-nav">
-            <div className="nav-item active-2">
-              <div className="nav-icon">
-                <i className="fa-solid fa-chart-pie"></i>
-              </div>
-              <div className="nav-text">Assets</div>
-            </div>
-            <div className="nav-item ">
-              <div className="nav-icon">
-                <i className="fa-solid fa-file-lines"></i>
-              </div>
-              <div className="nav-text">Transactions</div>
-            </div>
-            <div className="nav-item ">
-              <div className="nav-icon">
-                <i className="fa-solid fa-globe"></i>
-              </div>
-              <div className="nav-text">Browser</div>
-            </div>
-            <div className="nav-item ">
-              <div className="nav-icon">
-                <i className="fa-solid fa-magnifying-glass"></i>
-              </div>
-              <div className="nav-text">Explore</div>
-            </div>
-            <div className="nav-item ">
-              <div className="nav-icon">
-                <i className="fa-solid fa-gear"></i>
-              </div>
-              <div className="nav-text">Settings</div>
-            </div>
+            <NavBarItem
+              icon={
+                /* @ts-expect-error */
+                <AiOutlineHome />
+              }
+              activeIcon={
+                /* @ts-expect-error */
+                <AiOutlineHome />
+              }
+              onGo={() => {
+                push("/home");
+              }}
+              isActive={getCurrentRoute() === "/home"}
+            />
+            <NavBarItem
+              icon={
+                /* @ts-expect-error */
+                <CiGlobe />
+              }
+              activeIcon={
+                /* @ts-expect-error */
+                <FaGlobe />
+              }
+              onGo={() => {
+                push("/explore");
+              }}
+              isActive={getCurrentRoute() === "/explore"}
+            />
+            <NavBarItem
+              icon={
+                /* @ts-expect-error */
+                <LuArrowUpDown />
+              }
+              activeIcon={
+                /* @ts-expect-error */
+                <LuArrowUpDown />
+              }
+              onGo={() => {
+                push("/send");
+              }}
+              isActive={getCurrentRoute() === "/send"}
+            />
+            <NavBarItem
+              icon={
+                /* @ts-expect-error */
+                <RiFileList2Line />
+              }
+              activeIcon={
+                /* @ts-expect-error */
+                <RiFileList2Line />
+              }
+              onGo={() => {
+                push("/transactions");
+              }}
+              isActive={getCurrentRoute() === "/transactions"}
+            />
+            <NavBarItem
+              icon={
+                /* @ts-expect-error */
+                <IoWallet />
+              }
+              activeIcon={
+                /* @ts-expect-error */
+                <IoWalletSharp />
+              }
+              onGo={() => {
+                push("/");
+              }}
+              isActive={getCurrentRoute() === "/"}
+            />
           </div>
         </footer>
-      </body>
+      </div>
     </>
   );
 }
