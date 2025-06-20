@@ -3,12 +3,19 @@
   src: url("/font/Coinbase Display.ttf") format("truetype");
   font-weight: normal;
 }
+:root {
+  color-scheme: dark;
+}
 
 /* General Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html {
+  background-color: #121212;
 }
 
 body {
