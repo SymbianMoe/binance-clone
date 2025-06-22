@@ -3,17 +3,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import Image from "next/image";
 
-import { usePullToRefresh } from "use-pull-to-refresh";
-import { TailSpin } from "react-loader-spinner";
-import { IoWalletSharp, IoWallet } from "react-icons/io5";
-import { RiFileList2Line } from "react-icons/ri";
-import { LuArrowUpDown } from "react-icons/lu";
-import { CiGlobe } from "react-icons/ci";
-import { FaGlobe } from "react-icons/fa";
-import { AiOutlineHome } from "react-icons/ai";
 
-const MAXIMUM_PULL_LENGTH = 240;
-const REFRESH_THRESHOLD = 180;
 const walletInfo = {
   name: "marcelino.110394",
   address: "0x1234567890abcdef1234567890abcdef12345678",
@@ -21,8 +11,8 @@ const walletInfo = {
     {
       name: "Bitcoin",
       short: "BTC",
-      amount: 218.742,
-      usd: 22906224.76,
+      amount: 227.542,
+      usd: 23440670.01,
       img: "/btc.png",
     },
     {
@@ -70,19 +60,7 @@ const walletInfo = {
   ],
 };
 
-interface NavBarItemProps {
-  icon: React.ReactNode;
-  activeIcon: React.ReactNode;
-  isActive: boolean;
-  onGo?: () => void;
-}
-const NavBarItem = ({ icon, activeIcon, isActive, onGo }: NavBarItemProps) => {
-  return (
-    <div className={`nav-item ${isActive ? "active-2" : ""}`} onClick={onGo}>
-      <div className="nav-icon">{isActive ? activeIcon : icon}</div>
-    </div>
-  );
-};
+
 
 export default function Home() {
   const { isReady, reload, pathname, push } = useRouter();
@@ -90,13 +68,7 @@ export default function Home() {
     return acc + coin.usd;
   }, 0);
 
-  const { isRefreshing, pullPosition } = usePullToRefresh({
-    // you can choose what behavior for `onRefresh`, could be calling an API to load more data, or refresh whole page.
-    onRefresh: reload,
-    maximumPullLength: MAXIMUM_PULL_LENGTH,
-    refreshThreshold: REFRESH_THRESHOLD,
-    isDisabled: !isReady,
-  });
+
 
   const getCurrentRoute = () => {
     return pathname;
@@ -113,31 +85,7 @@ export default function Home() {
       </Head>
 
       <div className="container">
-        <div
-          style={{
-            top: (isRefreshing ? REFRESH_THRESHOLD : pullPosition) / 3,
-            opacity: isRefreshing || pullPosition > 0 ? 1 : 0,
-          }}
-          className="my-spinner-container"
-        >
-          <div
-            className={`h-full w-full ${isRefreshing ? "animate-spin" : ""}`}
-            style={
-              !isRefreshing ? { transform: `rotate(${pullPosition}deg)` } : {}
-            }
-          >
-            <TailSpin
-              visible={true}
-              height="32"
-              width="32"
-              color="#0e62ff"
-              ariaLabel="tail-spin-loading"
-              radius="1"
-              wrapperStyle={{}}
-              wrapperClass=""
-            />
-          </div>
-        </div>
+   
         <header>
           <div className="header-content">
             <div className="header-row">
@@ -226,80 +174,7 @@ export default function Home() {
           </section>
         </main>
 
-        <footer>
-          <div className="footer-nav">
-            <NavBarItem
-              icon={
-                /* @ts-expect-error */
-                <AiOutlineHome />
-              }
-              activeIcon={
-                /* @ts-expect-error */
-                <AiOutlineHome />
-              }
-              onGo={() => {
-                push("/home");
-              }}
-              isActive={getCurrentRoute() === "/home"}
-            />
-            <NavBarItem
-              icon={
-                /* @ts-expect-error */
-                <CiGlobe />
-              }
-              activeIcon={
-                /* @ts-expect-error */
-                <FaGlobe />
-              }
-              onGo={() => {
-                push("/explore");
-              }}
-              isActive={getCurrentRoute() === "/explore"}
-            />
-            <NavBarItem
-              icon={
-                /* @ts-expect-error */
-                <LuArrowUpDown />
-              }
-              activeIcon={
-                /* @ts-expect-error */
-                <LuArrowUpDown />
-              }
-              onGo={() => {
-                push("/send");
-              }}
-              isActive={getCurrentRoute() === "/send"}
-            />
-            <NavBarItem
-              icon={
-                /* @ts-expect-error */
-                <RiFileList2Line />
-              }
-              activeIcon={
-                /* @ts-expect-error */
-                <RiFileList2Line />
-              }
-              onGo={() => {
-                push("/transactions");
-              }}
-              isActive={getCurrentRoute() === "/transactions"}
-            />
-            <NavBarItem
-              icon={
-                /* @ts-expect-error */
-                <IoWallet />
-              }
-              activeIcon={
-                /* @ts-expect-error */
-                <IoWalletSharp />
-              }
-              onGo={() => {
-                push("/");
-              }}
-              isActive={getCurrentRoute() === "/"}
-            />
-          </div>
-        </footer>
+      
       </div>
     </>
   );

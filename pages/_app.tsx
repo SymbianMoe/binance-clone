@@ -64,7 +64,7 @@ export default function App({ Component, pageProps }: AppProps) {
               <AiFillHome />
             }
             onGo={() => {
-              push("/home");
+             // push("/home");
             }}
             isActive={pathname === "/home"}
           />
@@ -78,7 +78,7 @@ export default function App({ Component, pageProps }: AppProps) {
               <FaGlobe />
             }
             onGo={() => {
-              push("/explore");
+             // push("/explore");
             }}
             isActive={pathname === "/explore"}
           />
@@ -92,7 +92,7 @@ export default function App({ Component, pageProps }: AppProps) {
               <LuArrowUpDown />
             }
             onGo={() => {
-              push("/send");
+             // push("/send");
             }}
             isActive={pathname === "/send"}
           />
@@ -106,7 +106,7 @@ export default function App({ Component, pageProps }: AppProps) {
               <RiFileList2Fill />
             }
             onGo={() => {
-              push("/transactions");
+             // push("/transactions");
             }}
             isActive={pathname === "/transactions"}
           />
